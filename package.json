@@ -1,23 +1,31 @@
 {
-  "name": "nextjs-preact-demo",
+  "name": "devhub-frontend",
   "version": "1.0.0",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development next",
-    "build:ssg": "cross-env NODE_ENV=production next build && next export -o build",
-    "build:ssr": "cross-env NODE_ENV=production next build",
-    "start": "cross-env NODE_ENV=production next start"
+    "dev": "cross-env ENV=dev HOST=http://localhost:3000 API_URL=http://localhost:8080 next",
+    "build:ssg": "cross-env ENV=production next build && next export -o build",
+    "build:ssr": "cross-env ENV=production next build",
+    "start": "cross-env ENV=production next start"
   },
   "devDependencies": {
+    "cors": "^2.8.5",
     "cross-env": "^7.0.2"
   },
   "dependencies": {
+    "@prefresh/next": "^1.4.4",
+    "axios": "^0.21.1",
+    "cookie": "^0.4.1",
+    "js-cookie": "^2.2.1",
     "next": "10.0.0",
+    "next-iron-session": "^4.1.10",
     "next-plugin-preact": "^3.0.3",
     "preact": "^10.5.5",
     "preact-render-to-string": "^5.1.11",
     "react": "npm:@preact/compat@0.0.3",
     "react-dom": "npm:@preact/compat@0.0.3",
-    "react-ssr-prepass": "npm:preact-ssr-prepass@^1.1.2"
+    "react-ssr-prepass": "npm:preact-ssr-prepass@^1.1.2",
+    "styled-components": "^5.2.1",
+    "swr": "^0.4.0"
   },
   "license": "UNLICENSED"
 }
