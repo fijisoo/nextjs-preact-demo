@@ -1,22 +1,24 @@
 import { useEffect } from 'react'
-import Router from 'next/router'
+import { useRouter } from 'next/router'
 import useSWR from 'swr'
-import {fetcher} from "../../utils/fetchJson";
+import Cookies from "js-cookie";
 
 export default function useUser({
     redirectTo = false,
     redirectIfFound = false,
     id,
 } = {}) {
-    const { data: user, mutate: mutateUser, error } = useSWR(`/users/${id}`, fetcher)
+    const { data: user, mutate: mutateUser, error } = useSWR(`/users/${id}`);
+    const router = useRouter();
     useEffect(() => {
+        if(user?.data?.isLogged) Cookies.set('user-id', user?.data?.userId);
         if ((!redirectTo || !user)) return
         if (
             (error && error.status === 401) ||
             (redirectTo && !redirectIfFound && !user?.data) ||
             (redirectIfFound && user?.data)
         ) {
-            Router.push(redirectTo)
+            router.push(redirectTo)
         }
     }, [user, redirectIfFound, redirectTo, error])
 

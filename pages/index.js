@@ -1,58 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import Tags from './../src/modules/Tags';
-import Questions from "../src/modules/Questions";
+import React, { useState } from "react";
+import Questions from "../src/modules/Question";
 import Search from "../src/modules/Search";
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import data2 from '../public/mock.data.js';
-import tags from '../public/mock.tags.js';
-import useUser from "../src/services/users/useUser";
+import { useSearchQuestion } from "../src/services/QandA/useQuestions";
+import PostQuestion from "../src/modules/PostQuestion";
+import Navigation from "../src/modules/Nav";
 
 const Landing = () => {
-    const [questionsData, setquestionsFound] = useState([]);
-    const [searchValue, setSearchValue] = useState('');
-    const [data, setData] = useState([]);
-    const [tagsData, setTagsData] = useState([]);
-    const [isTagsDisplayed, setTagsDisplay] = useState(true);
-    // const { user } = useUser({ redirectTo: '/login' })
+  const [searchValue, setSearchValue] = useState("");
+  const [activeTabs, setActiveTabs] = useState(['postQuestion']);
+  const { questions, mutateQuestions } = useSearchQuestion(searchValue);
 
-    const searchByTagName = (database, value) => {
-        const acumulator = database.filter((el) => el.questionText && el.questionText.includes(value));
-        setquestionsFound(acumulator);
-    };
+  const navToggleEvent = (name) => {
+    activeTabs.includes(name)
+      ? setActiveTabs((prevState) => prevState.filter((e) => e !== name))
+      : setActiveTabs((prevState) => [...prevState, name]);
+  };
 
-    const handleToggleSwitch = () => {
-        setTagsDisplay((prevState) => !prevState);
-    };
-
-    useEffect(() => {
-        searchByTagName(data, searchValue);
-    }, [searchValue]);
-
-    // if (!user || user.isLoggedIn === false) {
-    //     return <div>loading...</div>
-    // }
-
-    return (
-        <TemplateWrapper>
-            {/*<LeftSection isTagsDisplayed={isTagsDisplayed}>*/}
-            {/*    <Tags*/}
-            {/*        data2={tagsData.tags}*/}
-            {/*        handleTagClick={console.log}*/}
-            {/*        onToggleSwitch={handleToggleSwitch}*/}
-            {/*        isTagsDisplayed={isTagsDisplayed}*/}
-            {/*    />*/}
-            {/*</LeftSection>*/}
-            <WallSection>
-                {/*<Search searchValue={searchValue} setSearchValue={setSearchValue} />*/}
-                <Questions questionsData={data} />
-            </WallSection>
-        </TemplateWrapper>
-    );
+  return (
+    <TemplateWrapper>
+      <WallSection>
+        <Navigation navToggleEvent={navToggleEvent} activeTabs={activeTabs} />
+        <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+        {activeTabs.includes("postQuestion") && (
+          <PostQuestion mutateQuestions={mutateQuestions} />
+        )}
+        <Questions questionsData={questions} mutateQuestions={mutateQuestions}/>
+      </WallSection>
+    </TemplateWrapper>
+  );
 };
 
 const TemplateWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   margin: auto;
   justify-content: center;
   max-width: 1000px;
@@ -69,6 +51,7 @@ const WallSection = styled.section`
   flex-direction: column;
   width: 100%;
   align-items: flex-start;
+  margin-top: 15px;
 `;
 
 export default Landing;

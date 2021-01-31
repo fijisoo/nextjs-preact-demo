@@ -1,52 +1,64 @@
-import React, {useState} from 'react';
-import FormInput from "./FormInput";
+import React, { useState } from "react";
+import Input from "./Input";
 import styled from "styled-components";
+import Separator from "../Separator";
 
-const InputField = ({label, handleValue}) => {
-    const [value, setValue] = useState('');
-    const [isActive, setActive] = useState(false);
+const InputField = ({ label, handleValue, type = 'text', className }) => {
+  const [value, setValue] = useState("");
+  const [isActive, setActive] = useState(false);
 
-    const handleInputClick = () => {
-        setActive(true)
-    }
+  const handleInputClick = () => {
+    setActive(true);
+  };
 
-    const handleChange = (e) => {
-        setValue(e.currentTarget.value);
-        handleValue(e.currentTarget.value)
-    }
+  const handleChange = (e) => {
+    setValue(e.currentTarget.value);
+    handleValue(e.currentTarget.value);
+  };
 
-    return (
-    <FieldWrapper>
-        <FormInputStyled onChange={handleChange} value={value} onClick={handleInputClick}/>
-        <InputLabel isActive={isActive}>{label}</InputLabel>
-    </FieldWrapper>)
-}
+  return (
+    <FieldWrapper className={className}>
+      <InputLabel isActive={isActive}>
+        <InputLabelText>{label}</InputLabelText>
+        <FormInputStyled
+          type={type}
+          onChange={handleChange}
+          value={value}
+          onClick={handleInputClick}
+        />
+      </InputLabel>
+      <Separator />
+    </FieldWrapper>
+  );
+};
 
 export default InputField;
 
 const FieldWrapper = styled.label`
-  display: flex;
+  display: inline-flex;
   position: relative;
-  flex-direction: column;
-  width: 100%;
-  margin-top: 25px;
-`
+  background: var(--form-input-background);
+  height: 40px;
+  width: 247px;
+`;
 
-const FormInputStyled = styled(FormInput)`
-  & + label{
-    top: 0;
-    transition: all 0.1s ease-in;
-  }
-  &:active + label, &:focus + label{
-    top: -20px;
-    transform-origin: left top;
-    transform: scale(0.9);
-  }
-`
+const FormInputStyled = styled(Input)`
+  margin-left: 0.5em;
+  margin-bottom: 5px;
+`;
 
 const InputLabel = styled.label`
   display: flex;
-  position: absolute;
   width: 100%;
-  z-index: -1;
-`
+  flex-wrap: nowrap;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  margin-left: 8px;
+`;
+const InputLabelText = styled.p`
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  flex-grow: 1;
+`;

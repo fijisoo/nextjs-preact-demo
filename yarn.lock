@@ -4357,9 +4357,9 @@ preact-render-to-string@^5.1.11:
     pretty-format "^3.8.0"
 
 preact@^10.5.5:
-  version "10.5.10"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.5.10.tgz#8de7bf669e965a51fc9e45a6fd1e97a47af383e6"
-  integrity sha512-A6SITnHaj5CS4JPLVroQDNOEozq4Y0B4yQSGHLznxHe66Jb2DvoeTEibLjXmfeofgQE3BZ2zurltBIapzCMlwg==
+  version "10.5.12"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.5.12.tgz#6a8ee8bf40a695c505df9abebacd924e4dd37704"
+  integrity sha512-r6siDkuD36oszwlCkcqDJCAKBQxGoeEGytw2DGMD5A/GGdu5Tymw+N2OBXwvOLxg6d1FeY8MgMV3cc5aVQo4Cg==
 
 prebuild-install@^5.3.5:
   version "5.3.6"
@@ -4381,6 +4381,11 @@ prebuild-install@^5.3.5:
     tar-fs "^2.0.0"
     tunnel-agent "^0.6.0"
     which-pm-runs "^1.0.0"
+
+prettier@^2.1.2:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.2.1.tgz#795a1a78dd52f073da0cd42b21f9c91381923ff5"
+  integrity sha512-PqyhM2yCjg/oKkFPtTGUojv7gnZAoG80ttl45O6x2Ug/rMJw4wcc9k6aaf2hibP7BGVCCM33gZoGjyvt9mm16Q==
 
 pretty-format@^3.8.0:
   version "3.8.0"

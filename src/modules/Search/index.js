@@ -1,3 +1,4 @@
+import React from 'react';
 import SearchView from './SearchView';
 
 const Search = ({ setSearchValue, searchValue }) => {

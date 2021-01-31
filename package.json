@@ -2,19 +2,20 @@
   "name": "devhub-frontend",
   "version": "1.0.0",
   "scripts": {
-    "dev": "cross-env ENV=dev HOST=http://localhost:3000 API_URL=http://localhost:8080 next",
+    "dev": "cross-env ENV=dev HOST=http://localhost:3001 API_URL=http://localhost:8080 next -p 3001",
     "build:ssg": "cross-env ENV=production next build && next export -o build",
     "build:ssr": "cross-env ENV=production next build",
     "start": "cross-env ENV=production next start"
   },
   "devDependencies": {
     "cors": "^2.8.5",
-    "cross-env": "^7.0.2"
+    "cross-env": "^7.0.2",
+    "prettier": "^2.1.2"
+
   },
   "dependencies": {
     "@prefresh/next": "^1.4.4",
     "axios": "^0.21.1",
-    "cookie": "^0.4.1",
     "js-cookie": "^2.2.1",
     "next": "10.0.0",
     "next-iron-session": "^4.1.10",

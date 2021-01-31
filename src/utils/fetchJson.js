@@ -1,4 +1,5 @@
 import axios from "axios";
+import { mutate } from 'swr';
 
 const baseURL = 'http://localhost:8080';
 const HOST = 'http://localhost:3000';
@@ -16,13 +17,13 @@ axios.interceptors.response.use(
     error => Promise.reject(error.response.data)
 );
 
-export async function fetcher(url, options) {
+export async function fetcher(url, options, method = '') {
     const axiosClient = createClient(url);
 
     try {
         let response;
         if(options){
-            response = await axiosClient.post(url, {...options.data});
+            response = !!method ? await axiosClient[method.toLowerCase()](url, {...options.data}) : await axiosClient.post(url, {...options.data});
         }else{
             response = await axiosClient.get(url)
         }
@@ -45,4 +46,11 @@ export async function fetcher(url, options) {
     } catch (error) {
         throw error.response
     }
+}
+
+export async function fetchAndCache(key) {
+    console.log("Prefetching", key);
+    const request = await fetcher(key);
+    mutate(key, request, false);
+    return request;
 }
