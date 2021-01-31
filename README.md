@@ -1,41 +1,23 @@
-# Preact example
+#### **TINGZ TO DO**
+##### login page
++ error displaying on login /register
++ register doesn't automaticly log in but redirecting to index
++ no validation
++ no other options registering into service - google / other
 
-This is a fully working example of Next.js 9.5 running on [Preact](https://github.com/preactjs/preact) instead of React.
+##### dashboard
++ logout doesn't redirect to login
++ search fulltext search to pattern search (fetch /questions/all/:userId?s=pattern)
++ close add question box when added Question
++ after editing text should refresh question
++ after deleting answer should refresh answers
++ tools fetch actions doesn't refresh questions
++ fix bug with bad ediAnswerText after deleting answer
++ check rerendering for outsideClick (memoize components?)
 
-This reduces the base JavaScript weight of pages to ~22kB.
++ handle userId into fetcher (?)
 
-> 🔭 In the future, this can be even smaller with some additional Webpack optimizations.
-
-## How to use
-
-Clone this repo and run `npm install`:
-
-```sh
-git clone https://github.com/developit/nextjs-preact-demo.git
-cd nextjs-preact-demo
-npm install
-```
-
-There are three commands available:
-
-```sh
-# start a development server:
-npm run dev
-
-# create a production build:
-npm run build
-
-# start a production server:
-npm start
-```
-
-## How does it work?
-
-The example takes advantage of npm/yarn aliases, which essentially allow installing `preact/compat` at `node_modules/react`.
-
-Here's how this example repo was set up:
-
-- Set up a basic Next.js app using `create-next-app`
-- Install `preact`, uninstall `react` and `react-dom`.
-- Install [preact-compat/react](https://github.com/preact-compat/react) and [preact-compat/react-dom](https://github.com/preact-compat/react-dom) for aliasing.
-- Use an [npm alias](https://github.com/npm/rfcs/blob/latest/implemented/0001-package-aliases.md#detailed-explanation) to replace `react-ssr-prepass` with `preact-ssr-prepass` (also [works](https://twitter.com/sebmck/status/873958247304232961) with Yarn).
+##### _to ting about_
++ tags section (to consider?)
++ categories section (drag and drop) (next phase?)
++ drag and drop for question order (?)
