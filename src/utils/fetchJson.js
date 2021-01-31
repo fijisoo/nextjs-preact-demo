@@ -1,7 +1,7 @@
 import axios from "axios";
 import { mutate } from 'swr';
 
-const baseURL = 'http://localhost:8080';
+const baseURL = 'https://devvhub.herokuapp.com/';
 const HOST = 'http://localhost:3000';
 
 const createClient = (url) => {
